@@ -1,5 +1,5 @@
 {
-  "name": "eggtest",
+  "name": "testegg",
   "version": "1.0.0",
   "description": "汇付宝收银台、SDK服务",
   "dependencies": {
@@ -33,10 +33,10 @@
     "node": ">=10.0.0"
   },
   "scripts": {
-    "start": "npm run stop && egg-scripts start --title=eggtest",
+    "start": "npm run stop && egg-scripts start --title=testegg",
     "dev": "npm run stop && egg-bin dev",
     "debug": "npm run stop && egg-bin debug",
-    "stop": "egg-scripts stop --title=eggtest",
+    "stop": "egg-scripts stop --title=testegg",
     "autod": "autod",
     "lint": "eslint .",
     "lintfix": "eslint . --fix",
