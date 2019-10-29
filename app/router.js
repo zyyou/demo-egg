@@ -7,8 +7,22 @@ module.exports = app => {
   // 首页
   app.router.get('/', app.controller.home.index);
 
-  nacos(app, 'nacos', app.controller.nacos);
+  nacos(app, '/nacos', app.controller.nacos);
+  mem(app, '/mem', app.controller.mem);
 };
+
+/**
+ * 内存缓存路由
+ *
+ * @param {Egg.Application} app - egg Application
+ * @param {String} prefix 路由前缀
+ * @param {Egg.Controller} controller - egg Controller
+ */
+function mem(app, prefix, controller) {
+  app.router.get(`${prefix}/`, controller.index);
+  app.router.get(`${prefix}/index`, controller.index);
+  app.router.get(`${prefix}/set`, controller.set);
+}
 
 /**
  * Nacos 路由
@@ -18,8 +32,9 @@ module.exports = app => {
  * @param {Egg.Controller} controller - egg Controller
  */
 function nacos(app, prefix, controller) {
-  // 首页
+  app.router.get(`${prefix}/`, controller.index);
   app.router.get(`${prefix}/index`, controller.index);
-  // 服务发现
-  app.router.get(`${prefix}/discovery`, controller.discovery);
+  app.router.get(`${prefix}/registry`, controller.registry);
+  app.router.get(`${prefix}/deregister`, controller.deregister);
+  app.router.get(`${prefix}/subscribe`, controller.subscribe);
 }
