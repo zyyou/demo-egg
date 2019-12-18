@@ -6,9 +6,9 @@ exports.alinode = {
   package: 'egg-alinode',
 };
 
-exports.nunjucks = {
+exports.vue = {
   enable: true,
-  package: 'egg-view-nunjucks',
+  package: 'egg-view-vue',
 };
 
 // ua扩展
@@ -21,4 +21,10 @@ exports.ua = {
 exports.renderx = {
   enable: true,
   package: 'egg-renderx',
+};
+
+// grpc
+exports.grpc = {
+  enable: true,
+  package: 'egg-grpc',
 };

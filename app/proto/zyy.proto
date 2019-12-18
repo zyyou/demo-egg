@@ -1,0 +1,20 @@
+syntax = "proto3";  // 第一行指定语法，默认proto2
+
+package zyy;
+
+service ZyyGrpcService {
+    rpc GetData (ZyyRequest) returns (ZyyResponse);
+}
+
+message ZyyRequest {
+    required int32 code = 1;    // 1表示标识符（最小1），用于二进制识别字段，1-15标识符占1字节，留给频繁出现的元素
+    optional string data = 2;
+    optional string message = 3;
+}
+
+message ZyyResponse {
+    required int32 code = 1;
+    required string time = 2;
+    optional string message = 3;
+}
+

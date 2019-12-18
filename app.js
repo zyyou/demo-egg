@@ -1,5 +1,8 @@
 'use strict';
 
+const grpc = require('grpc');
+const protoLoader = require('@grpc/proto-loader');
+
 class AppBootHook {
   constructor(app) {
     this.app = app;
@@ -35,6 +38,32 @@ class AppBootHook {
     // http / https server 已启动，开始接受外部请求
     // 此时可以从 app.server 拿到 server 的实例
     // this.app.logger.debug('5 serverDidReady');
+
+    const server = new grpc.Server();
+
+    // 加载服务
+    const packageDefinition = await protoLoader.load(__dirname + '/app/proto/zyy.proto');
+    // this.app.logger.debug('proto packageDefinition',packageDefinition);
+    // 获取proto
+    const helloProto = grpc.loadPackageDefinition(packageDefinition);
+    // 获取package
+    const grpc_zyy = helloProto.zyy;
+    // 实现getData
+    const grpcAction = (call, callback) => {
+      this.app.logger.debug('grpc request', call.request);
+      // 响应
+      callback(null, {
+        code: 111,
+        message: 'from nodejs server: ' + JSON.stringify(call.request),
+        time: new Date().toLocaleString(),
+      });
+    };
+    // 加入grpc服务
+    server.addService(grpc_zyy.ZyyGrpcService.service, { getData: grpcAction });
+
+    // 启动监听
+    server.bind('0.0.0.0:50051', grpc.ServerCredentials.createInsecure());
+    server.start();
   }
 }
 

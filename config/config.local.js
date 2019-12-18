@@ -72,10 +72,13 @@ module.exports = appInfo => {
 
   // 视图配置
   config.view = {
-    defaultViewEngine: 'nunjucks',
+    defaultViewEngine: 'vue',
     mapping: {
-      '.njk': 'nunjucks',
+      '.vue': 'vue',
     },
+  };
+  config.vue = {
+    cache: true,
   };
 
   config.i18n = {
@@ -91,6 +94,11 @@ module.exports = appInfo => {
     overwrite: true, // 同名覆盖
     signed: true, // 签名
     encrypt: true, // 加密
+  };
+
+  // egg-grpc配置
+  config.grpc = {
+    endpoint: 'localhost:50051', // 服务端地址
   };
 
   return {
