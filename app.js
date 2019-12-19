@@ -1,5 +1,6 @@
 'use strict';
 
+const { Consumer } = require('ali-ons');
 const grpc = require('grpc');
 const protoLoader = require('@grpc/proto-loader');
 
@@ -39,8 +40,19 @@ class AppBootHook {
     // 此时可以从 app.server 拿到 server 的实例
     // this.app.logger.debug('5 serverDidReady');
 
-    const server = new grpc.Server();
+    // *** rocketmq begin ***
+    const consumer = new Consumer({
+      httpclient: this.app.curl,
+      consumerGroup: 'zyy_group',
+      nameSrv: '192.168.70.121:9876',
+    });
+    consumer.subscribe('zyy_topic', 'zyy_tag', async msg => {
+      this.app.logger.debug(`收到消息[${msg.msgId}]:${msg.body.toString()}`, msg);
+    });
+    // *** rocketmq end ***
 
+    // *** grpc begin ***
+    const server = new grpc.Server();
     // 加载服务
     const packageDefinition = await protoLoader.load(__dirname + '/app/proto/zyy.proto');
     // this.app.logger.debug('proto packageDefinition',packageDefinition);
@@ -64,6 +76,7 @@ class AppBootHook {
     // 启动监听
     server.bind('0.0.0.0:50051', grpc.ServerCredentials.createInsecure());
     server.start();
+    // *** grpc end ***
   }
 }
 

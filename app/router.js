@@ -12,6 +12,7 @@ module.exports = app => {
 
   nacos(app, '/nacos', app.controller.nacos);
   mem(app, '/mem', app.controller.mem);
+  rocketmq(app, '/mq', app.controller.rocketmq);
   vue(app, '/vue', app.controller.vue);
 };
 
@@ -53,4 +54,10 @@ function nacos(app, prefix, controller) {
   app.router.get(`${prefix}/registry`, controller.registry);
   app.router.get(`${prefix}/deregister`, controller.deregister);
   app.router.get(`${prefix}/subscribe`, controller.subscribe);
+}
+
+function rocketmq(app, prefix, controller) {
+  app.router.get(`${prefix}/`, controller.index);
+  app.router.get(`${prefix}/send`, controller.send);
+  app.router.get(`${prefix}/send1`, controller.send1);
 }

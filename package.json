@@ -4,6 +4,8 @@
   "description": "汇付宝收银台、SDK服务",
   "dependencies": {
     "@grpc/proto-loader": "^0.5.3",
+    "ali-ons": "^3.7.0",
+    "bck-msg": "^1.0.0",
     "egg": "^2.23.0",
     "egg-alinode": "^2.0.1",
     "egg-extend-ua": "^1.0.2",
@@ -13,7 +15,6 @@
     "egg-validate": "^2.0.2",
     "egg-view-vue": "^1.0.0",
     "format": "^0.2.2",
-    "hy-message": "^1.4.0",
     "moment": "^2.24.0",
     "nacos": "^2.0.0",
     "validator": "^11.1.0"
