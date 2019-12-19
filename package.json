@@ -1,5 +1,5 @@
 {
-  "name": "testegg",
+  "name": "demoegg",
   "version": "1.0.0",
   "description": "汇付宝收银台、SDK服务",
   "dependencies": {
@@ -36,10 +36,10 @@
     "node": ">=10.0.0"
   },
   "scripts": {
-    "start": "egg-scripts start --title=testegg",
+    "start": "egg-scripts start --title=demoegg",
     "dev": "egg-bin dev",
     "debug": "egg-bin debug",
-    "stop": "egg-scripts stop --title=testegg",
+    "stop": "egg-scripts stop --title=demoegg",
     "autod": "autod",
     "lint": "eslint .",
     "lintfix": "eslint . --fix",
@@ -47,7 +47,9 @@
     "test-local": "egg-bin test",
     "cov": "egg-bin cov",
     "ci": "npm run lint && egg-bin pkgfiles --check && npm run cov",
-    "pkgfiles": "egg-bin pkgfiles"
+    "pkgfiles": "egg-bin pkgfiles",
+    "initbase": "dbname=base npx sequelize db:migrate && dbname=base npx sequelize db:seed:all",
+    "inittrade": "dbname=trade npx sequelize db:migrate && dbname=trade npx sequelize db:seed:all"
   },
   "ci": {
     "version": "10"

@@ -1,0 +1,56 @@
+{
+  "sequelize": {
+    "datasources": [
+      {
+        "delegate": "baseModel",
+        "database": "message_base",
+        "username": "root",
+        "password": "123456",
+        "host": "192.168.70.121",
+        "port": "3306",
+        "dialect": "mysql",
+        "migrationStorage": "json",
+        "migrationStoragePath": "database/base/log.meta.json",
+        "migrationStorageTableName": "sequelize_meta",
+        "migrationStorageTableSchema": "custom_schema",
+        "seederStorage": "json",
+        "seederStoragePath": "database/base/log.data.json",
+        "seederStorageTableName": "sequelize_data"
+      },
+      {
+        "delegate": "tradeModel",
+        "database": "message_trade",
+        "username": "root",
+        "password": "123456",
+        "host": "192.168.1.1",
+        "port": "3306",
+        "dialect": "mysql",
+        "migrationStorage": "json",
+        "migrationStoragePath": "database/trade/log.meta.json",
+        "migrationStorageTableName": "sequelize_meta",
+        "migrationStorageTableSchema": "custom_schema",
+        "seederStorage": "json",
+        "seederStoragePath": "database/trade/log.data.json",
+        "seederStorageTableName": "sequelize_data"
+      }
+    ]
+  },
+  "keys": "ljasfhweqounmxcnvlhq",
+  "logger": {
+    "level": "DEBUG",
+    "consoleLevel": "DEBUG",
+    "allowDebugAtProd": false
+  },
+  "alinode": {
+    "enable": false,
+    "appid": "79111",
+    "secret": "d59b82f8aaa562c02db269"
+  },
+  "cluster": {
+    "listen": {
+      "path": "",
+      "port": 9105,
+      "hostname": "0.0.0.0"
+    }
+  }
+}
